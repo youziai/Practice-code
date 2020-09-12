@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background-color: #2aabd2;
+        }
+        .contain{
+            width: 888px;
+            margin: 0 auto;
+            min-height: 60px;
+            border: 1px solid yellowgreen;
+            border-radius: 20px;
+            box-shadow: 0 0 30px skyblue;
+        }
+
+    </style>
+</head>
+<body>
+<h1>英雄联盟</h1>
+<input type="button" value="请点我" class="onc">
+<div class="contain">
+
+</div>
+</body>
+<script>
+    document.querySelector('.onc').onclick = function () {
+        //新键异步对象
+        var xml = new XMLHttpRequest();
+        //请求行
+        xml.open('get','backHero.php');
+        //请求头（get方式可以省略）
+        //设置回调函数
+        xml.onreadystatechange = function(){
+            if (xml.status==200&&xml.readyState==4)
+            // console.log(xml.responseText);
+            var Heroarray = JSON.parse(xml.responseText);
+            console.log(Heroarray);
+            //直接用html进行写
+            var html = '';
+            html+='<table>';
+            for (var a = 0;a<Heroarray.length;a++){
+                html+='<tr>';
+                html+='<td><img src="'+Heroarray[a].champion_icon+'" alt="'+Heroarray[a].champion_title+'"></td>';
+                html+='<td>'+Heroarray[a].champion_name+'</td>';
+                html+='<td>'+Heroarray[a].champion_title+'</td>';
+                html+='<td>'+Heroarray[a].champion_info+'</td>';
+                html+='<td>'+Heroarray[a].champion_tags+'</td>';
+                html+='</tr>';
+            }
+            html+='</table>';
+            document.querySelector('.contain').innerHTML = html;
+
+        }
+        //发送请求
+        xml.send(null)
+
+    }
+</script>
+</html>
