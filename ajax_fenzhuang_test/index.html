@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>函数封装</h1>
+<input class="get" value="get" type="button">
+<input class="post" value="post" type="button">
+<input class="choice" value="choice" type="button">
+</body>
+<script src="js.js"></script>
+<script>
+    document.querySelector('.get').onclick = function () {
+        get('tt.php','name=jack&value=eat',function (data) {
+                alert(data);
+        })
+    }
+    document.querySelector('.post').onclick = function () {
+        get('tt.php','name=jack&value=eat',function (data) {
+            alert(data);
+        })
+    }
+    document.querySelector('.choice').onclick = function () {
+        unified('tt.php','get','name=jack&value=lalalalal',function (data) {
+            console.log('yes i succes');
+            alert(data);
+        })
+    }
+</script>
+</html>
