@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+</head>
+<body>
+    <input type="button"  class="post" value="post">
+    <input type="button" class="get" value="get">
+    <input type="button" class="ajax" value="ajax">
+</body>
+<script src="js/jquery-1.12.4.min.js"></script>
+<script>
+    $('.post').click(function () {
+        $.get('../00.backData/01.backSendData.php','name=rose&husband=robot',function(data){
+          alert(data);
+        })
+    })
+    $('.get').click(function () {
+        $.post('../00.backData/01.backSendData.php','name=秋阳&skill=吃',function (data) {
+            alert(data);
+        })
+    })
+    $('.ajax').click(function () {
+        $.ajax({
+            url:'../00.backData/backXML.php',
+            type:'get',
+            data:'name',
+            success:function (data) {
+               console.log(data);
+            }
+        })
+    })
+</script>
+</html>
