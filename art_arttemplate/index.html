@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>这是一个标题哎</h1>
+</body>
+</html>
+<script src="template-web.js"></script>
+<script type="text/html" id="fill">
+    <ul>
+        {{if sex == '男'}}
+        <li>
+            <ol>欢迎小学弟：{{name}}</ol>
+            <ol>他的技巧是:{{skill}}</ol>
+            <ol>{{@info}}</ol>
+        </li>
+        {{else if sex == '女'}}
+        <li>
+            <ol>欢迎小学妹：{{name}}</ol>
+            {{each skill}}
+            <ol>他的技巧是:{{$value}}</ol>
+            {{/each}}
+
+        </li>
+        {{/if}}
+    </ul>
+</script>
+<script>
+    var data = {
+        sex:'男',
+        name:'xiaoming',
+        skill:'eat',
+        info:'<a href="www.baidu.com">点我百度</a>'
+    }
+    var data2 = {
+        sex:'女',
+        name:'xiaobai',
+        skill:'eat and run',
+    }
+    var data3 = {
+        sex:'女',
+        name:'xiaobai',
+        skill:['eat and run',
+        '22222',
+            '333333',
+            '33334444'
+        ]
+    }
+    document.body.innerHTML=template('fill',data);
+    console.log(template('fill',data));
+</script>
